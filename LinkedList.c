@@ -13,6 +13,8 @@ void pushOnListAtEnd( int value);
 void pushOnListAtStart(int value);
 void findIndexOfItem(int value);
 void pushOnMiddle(int value);
+void deleteLastNode();
+void deleteFirstNode();
 void printList(int value);
 void menu();
 
@@ -24,13 +26,16 @@ int main()
     countNode++;
     // menu();
     int choise = 0;
-    scanf(" %d",&choise);    if(choise == 1)
+    scanf(" %d",&choise);    
+    if(choise == 1)
     {
         funcPtr[0](5);
         funcPtr[0](6);
         funcPtr[0](7);
         funcPtr[0](8);
         funcPtr[2](4);
+        funcPtr[4](1);
+        deleteLastNode();
         funcPtr[4](1);
     }
     return 0;
@@ -111,6 +116,21 @@ void pushOnMiddle(int value)
 
     insertNode->next = tmp->next;
     tmp->next = insertNode;
+}
+
+void deleteLastNode()
+{
+    struct Node *tmp = head;
+    struct Node *ptr;
+    while(tmp->next!=NULL)
+    {
+        ptr = tmp;
+        tmp = tmp->next;
+    }
+    ptr->next = NULL;
+    countNode--;
+    printf("The deleted Node is: %d", tmp->data);
+    free(tmp);
 }
 
 void menu()
